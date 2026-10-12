@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0a1b3d">
+  <title>Back office</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f6bff'/%3E%3Crect x='14' y='30' width='9' height='20' rx='3' fill='%23fff'/%3E%3Crect x='28' y='20' width='9' height='30' rx='3' fill='%2322d3ee'/%3E%3Crect x='42' y='12' width='9' height='38' rx='3' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/manage/admin.css">
+</head>
+<body>
+
+<!-- ============ sign in -->
+<div class="login" id="login-screen">
+  <div class="login-art" aria-hidden="true">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="mini-chart"><i style="--h:38%"></i><i style="--h:62%"></i><i style="--h:48%"></i><i style="--h:80%"></i><i style="--h:66%"></i><i style="--h:94%"></i></div>
+    <h2>Run the whole kitchen from one screen.</h2>
+    <p>Live orders, sales, dishes and your team, all in one place.</p>
+  </div>
+  <form class="login-form" id="login-form" novalidate>
+    <h1>Back office</h1>
+    <p class="muted">Sign in with your owner or staff account.</p>
+    <label>Email<input name="email" type="email" autocomplete="username" required></label>
+    <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+    <p class="form-error" id="login-error" role="alert"></p>
+    <button class="btn btn-block" type="submit" id="login-btn">Sign in</button>
+    <a class="back" href="/">Back to the website</a>
+  </form>
+</div>
+
+<!-- ============ app -->
+<div class="app" id="app" hidden>
+  <aside class="side" id="side">
+    <div class="logo"><span data-brand>Pot &amp; Plate</span><small>Back office</small></div>
+    <nav id="nav" aria-label="Sections"></nav>
+    <div class="side-foot">
+      <div class="me" id="me"></div>
+      <a href="/" target="_blank" rel="noopener">View website</a>
+      <button class="link" id="logout">Sign out</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <button class="menu-btn" id="menu-btn" aria-label="Open menu">Menu</button>
+      <h1 id="title">Overview</h1>
+      <div class="top-right">
+        <span class="live" id="live"><i></i>Live</span>
+        <button class="chip" id="sound" aria-pressed="false">Order alert: off</button>
+      </div>
+    </header>
+    <section class="view" id="view" aria-live="polite"></section>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+<script src="/manage/admin.js" defer></script>
+</body>
+</html>

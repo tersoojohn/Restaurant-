@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pot &amp; Plate</title>
+  <meta name="description" content="Order fresh, home-style meals online for delivery or pickup.">
+  <meta name="theme-color" content="#a8131f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23a8131f'/%3E%3Ccircle cx='32' cy='32' r='19' fill='%23ffb703'/%3E%3C/svg%3E">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div id="banner" class="banner" hidden></div>
+
+<header class="topbar" id="topbar">
+  <a class="brand" href="/" aria-label="Home"><span data-brand-a>Pot</span> <em>&amp;</em> <span data-brand-b>Plate</span></a>
+  <nav class="links" aria-label="Main">
+    <a href="#menu">Menu</a>
+    <a href="#how">How it works</a>
+    <a href="#visit">Visit us</a>
+  </nav>
+  <div class="actions">
+    <span id="acct"></span>
+    <button class="btn btn-sm btn-cart" data-act="open-cart" id="cart-btn">Your order<span class="badge" id="cart-count" hidden>0</span></button>
+  </div>
+</header>
+
+<main>
+  <!-- ============ hero -->
+  <section class="hero" id="hero">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="status-pill" id="open-pill"><span class="dot"></span><span id="open-text">Welcome</span></p>
+      <h1 class="hero-title">
+        <span class="hl"><span class="w" style="--i:0">Food</span> <span class="w" style="--i:1">that</span></span>
+        <span class="hl"><span class="w" style="--i:2">tastes</span> <span class="w" style="--i:3">like</span></span>
+        <span class="hl"><span class="rotator w" style="--i:4" id="rotator"><span class="rot-word">home.</span></span></span>
+      </h1>
+      <p class="lede rise" style="--i:6" id="hero-intro"></p>
+      <div class="hero-cta rise" style="--i:7">
+        <a class="btn btn-sun" href="#menu">Order now</a>
+        <a class="btn btn-ghost" href="#how">How it works</a>
+      </div>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="glow g1"></div><div class="glow g2"></div>
+      <div class="plate-wrap"><img class="hero-plate" src="/img/dishes/hero-plate.svg" alt="A plate of jollof rice, chicken wings and fried plantain" width="600" height="600" fetchpriority="high"></div>
+      <svg class="steam" viewBox="0 0 220 160" aria-hidden="true">
+        <path class="s s1" d="M60 150 C 40 120, 85 100, 60 70 C 45 48, 70 30, 58 8"/>
+        <path class="s s2" d="M110 150 C 90 118, 135 98, 110 64 C 96 42, 122 24, 108 2"/>
+        <path class="s s3" d="M162 150 C 142 120, 186 100, 162 72 C 148 52, 172 34, 160 12"/>
+      </svg>
+      <img class="bit b-chili" style="--d:30" src="/img/dishes/bit-chili.svg" alt="" width="150" height="80">
+      <img class="bit b-tomato" style="--d:-22" src="/img/dishes/bit-tomato.svg" alt="" width="80" height="80">
+      <img class="bit b-leaf" style="--d:40" src="/img/dishes/bit-leaf.svg" alt="" width="60" height="50">
+      <img class="bit b-plantain" style="--d:-34" src="/img/dishes/bit-plantain.svg" alt="" width="100" height="70">
+      <aside class="hero-card" id="hero-card" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <!-- ============ ticker -->
+  <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+  <!-- ============ facts -->
+  <section class="facts" id="facts" aria-label="At a glance"></section>
+
+  <!-- ============ favourites -->
+  <section class="section" id="favs-section" hidden>
+    <div class="section-head reveal">
+      <p class="eyebrow dark">Customer favourites</p>
+      <h2>What everyone keeps ordering</h2>
+    </div>
+    <div class="favs" id="favs"></div>
+  </section>
+
+  <!-- ============ menu -->
+  <section class="section" id="menu">
+    <div class="section-head split reveal">
+      <div>
+        <p class="eyebrow dark">The menu</p>
+        <h2>Pick each dish on its own</h2>
+        <p class="sub">Every dish is priced and ordered separately. Add exactly what you want, in the quantity you want.</p>
+      </div>
+      <div class="tools">
+        <label class="search"><span class="sr">Search dishes</span><input id="search" type="search" placeholder="Search the menu" autocomplete="off"></label>
+        <div class="sortbar" role="group" aria-label="Sort menu">
+          <button data-act="sort" data-sort="name" class="chip is-on">A to Z</button>
+          <button data-act="sort" data-sort="popular" class="chip">Most ordered</button>
+          <button data-act="sort" data-sort="price" class="chip">Price</button>
+          <button data-act="sort" data-sort="fast" class="chip">Quickest</button>
+        </div>
+      </div>
+    </div>
+    <div id="menu-list" class="menu-grid" aria-live="polite">
+      <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+    </div>
+  </section>
+
+  <!-- ============ how it works -->
+  <section class="how" id="how">
+    <div class="how-inner">
+      <div class="section-head reveal">
+        <p class="eyebrow">Simple</p>
+        <h2>From your phone to your plate</h2>
+      </div>
+      <ol class="steps">
+        <li class="reveal" style="--i:0"><span class="num">01</span><h3>Choose your dishes</h3><p>Add rice, wings, plantain, or anything else, one dish at a time and in the quantity you like.</p></li>
+        <li class="reveal" style="--i:1"><span class="num">02</span><h3>Pay securely</h3><p>Check out with your card, bank transfer or USSD through Paystack. We never see your card details.</p></li>
+        <li class="reveal" style="--i:2"><span class="num">03</span><h3>We cook, you receive</h3><p>The kitchen starts right away and you see exactly when it will be ready. Delivered to you or kept warm for pickup.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ call to action -->
+  <section class="cta reveal">
+    <h2>Hungry? The kitchen is ready when you are.</h2>
+    <a class="btn btn-sun" href="#menu">See the menu</a>
+  </section>
+</main>
+
+<footer class="visit" id="visit">
+  <div>
+    <h2 class="brand-big"><span data-brand-a>Pot</span> <em>&amp;</em> <span data-brand-b>Plate</span></h2>
+    <p id="visit-address"></p>
+    <p id="visit-phone"></p>
+  </div>
+  <div>
+    <h3>Opening hours</h3>
+    <dl id="visit-hours"></dl>
+  </div>
+  <p class="fine">Prices are in Naira. Delivery is a flat fee, shown before you pay.</p>
+</footer>
+
+<!-- ============ order drawer -->
+<div class="overlay" id="overlay" data-act="close" hidden></div>
+<aside class="drawer" id="cart-drawer" aria-label="Your order" aria-hidden="true">
+  <div class="drawer-head"><h2>Your order</h2><button class="link" data-act="close">Close</button></div>
+  <div class="drawer-body" id="cart-body"></div>
+</aside>
+
+<aside class="drawer" id="orders-drawer" aria-label="My orders" aria-hidden="true">
+  <div class="drawer-head"><h2>My orders</h2><button class="link" data-act="close">Close</button></div>
+  <div class="drawer-body" id="orders-body"></div>
+</aside>
+
+<!-- ============ login / register -->
+<div class="modal" id="auth-modal" hidden role="dialog" aria-modal="true" aria-labelledby="auth-title">
+  <div class="modal-card">
+    <div class="modal-side" aria-hidden="true">
+      <img src="/img/dishes/jollof.svg" alt="" width="260" height="260">
+      <p>Your next meal is a few taps away.</p>
+    </div>
+    <div class="modal-main">
+      <button class="link modal-close" data-act="close-auth">Close</button>
+      <h2 id="auth-title">Welcome</h2>
+      <p class="sub" id="auth-note">Log in to order, or create an account in under a minute.</p>
+      <div class="tabs" role="tablist">
+        <button class="tab is-on" data-act="auth-tab" data-tab="login">Log in</button>
+        <button class="tab" data-act="auth-tab" data-tab="register">Create account</button>
+      </div>
+      <form id="auth-form" novalidate>
+        <label data-only="register">Full name<input name="name" autocomplete="name"></label>
+        <label data-only="register">Phone number<input name="phone" type="tel" autocomplete="tel" placeholder="080..."></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required minlength="8"></label>
+        <p class="form-error" id="auth-error" role="alert"></p>
+        <button class="btn btn-block" type="submit" id="auth-submit">Log in</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="/js/site.js" defer></script>
+</body>
+</html>
